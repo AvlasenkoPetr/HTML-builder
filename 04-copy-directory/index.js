@@ -10,42 +10,6 @@ async function func() {
                     func()
                 })
 
-
-                // fs.readdir(path.join(__dirname, 'files_copy'), function(err, files) {
-                //     if (err) {
-                //         throw err
-
-                //     } else if (!files.length) {
-                //         fs.rmdir(path.join(__dirname, 'files_copy'), function(err) {
-                //             if(err) throw err
-                //         })
-                //         func()
-                        
-                //     } else if (files.length) {
-                //         fs.readdir(path.join(__dirname, 'files_copy'), {withFileTypes: true}, function(err, items) {
-                //             if (err) {
-                //                 throw err
-                //             } else {
-                //                 for (file of items) {
-                //                     console.log('Файл ' + file.name);
-
-                //                     fs.unlink(path.join(__dirname, 'files_copy', file.name), err => {
-                //                         if(err) throw err
-                //                         console.log('Файл ' + file.name + ' успешно удалён');
-                //                     });
-                //                 }
-                        
-                //                 fs.rmdir(path.join(__dirname, 'files_copy'), function(err) {
-                //                     if(err) throw err
-                //                 })
-
-                //                 func()
-                                
-                //             }
-                //         })
-                //     }
-                // });
-
             } else  {
                 fs.mkdir(path.join(__dirname, 'files_copy'), err => {
                     if(err) throw err;
