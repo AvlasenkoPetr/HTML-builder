@@ -2,9 +2,9 @@ const path = require('path');
 const fs = require('fs');
 
 async function func() {
-    fs.access(path.join(__dirname, 'project-dist', 'bundle.css'), fs.F_OK, function (err) {
+    fs.access(path.join(__dirname, 'styles', 'bundle.css'), fs.F_OK, function (err) {
         if (err) {
-            fs.open(path.join(__dirname, 'project-dist', 'bundle.css'), 'w', (err) => {
+            fs.open(path.join(__dirname, 'styles', 'bundle.css'), 'w', (err) => {
                 if (err)
                     throw err;
                 console.log('File created');
@@ -17,13 +17,13 @@ async function func() {
                     for (file of files) {
                         let ext = path.extname(path.join(__dirname, file.name));
 
-                        if (ext != '.css') {
+                        if (ext != '.css' || file.name == 'bundle.css') {
                             console.log('Игнорим: ', file.name);
                             continue;
                         } else {
                             fs.readFile(path.join(__dirname, 'styles', file.name), function (err, data) {
                                 if (err) console.log(err);
-                                fs.appendFile(path.join(__dirname, 'project-dist', 'bundle.css'), data, function(err) {
+                                fs.appendFile(path.join(__dirname, 'styles', 'bundle.css'), data, function(err) {
                                     if (err) throw err
                                 }) 
                               });
@@ -33,7 +33,7 @@ async function func() {
             });
 
         } else {
-            fs.unlink(path.join(__dirname, 'project-dist', 'bundle.css'), (err) => {
+            fs.unlink(path.join(__dirname, 'styles', 'bundle.css'), (err) => {
                 if (err)
                     throw err;
                 console.log('File deleted successfully!');
