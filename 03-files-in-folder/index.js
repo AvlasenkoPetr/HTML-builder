@@ -18,10 +18,10 @@ fs.readdir(pathFolder, {withFileTypes: true}, function(err, files) {
                 
                 fs.stat(pathFile, function(error, items) {
                     if (error) throw error('Ошибка!')
-                    
+
                     let arrSize = items.size.toString().split('')
                     arrSize.splice(-3, 0, '.')
-                    info.push(arrSize.join('') + ' kb')
+                    info.push(arrSize.join('') + 'kb')
                     console.log(info.join(' - '))
                 })
 
