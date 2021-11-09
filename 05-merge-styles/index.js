@@ -27,12 +27,6 @@ async function func() {
                                     if (err) throw err
                                 }) 
                               });
-
-                            // fs.appendFile(path.join(__dirname, 'styles', 'bundle.css'), 'test\n', function(err) {
-                            //     if (err) throw err
-                            //     console.log('Чето внесли')
-                            // }) 
-                            // console.log('Будем вносить: ', file);
                         }
                     }
                 }
