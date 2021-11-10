@@ -23,7 +23,7 @@ async function func() {
                         } else {
                             fs.readFile(path.join(__dirname, 'styles', file.name), function (err, data) {
                                 if (err) console.log(err);
-                                fs.appendFile(path.join(__dirname, 'project-dist', 'bundle.css'), data, function(err) {
+                                fs.appendFile(path.join(__dirname, 'project-dist', 'bundle.css'), `${data}\n`, function(err) {
                                     if (err) throw err
                                 }) 
                               });
