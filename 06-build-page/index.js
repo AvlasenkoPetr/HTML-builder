@@ -207,12 +207,32 @@ async function createIndexHtml() {
         await fsProm.open(path.join(__dirname, 'project-dist', 'index.html'), 'w')
         const data = await fsProm.readFile(path.join(__dirname, 'template.html'))
         await fsProm.appendFile(path.join(__dirname, 'project-dist', 'index.html'), data)
+        
+        // console.log(data)
 
     } catch(err) {
         throw err
-
-    } finally {
         
+    } finally {
+        const components = await fsProm.readdir(path.join(__dirname, 'components'))
+
+        for (const comp of components) {
+            // const indexContent = await fsProm.readFile(path.join(__dirname, 'project-dist', 'index.html'))
+            const compData = await fsProm.readFile(path.join(__dirname, 'components', comp))
+            const compName = comp.split('.')[0]
+            
+            // let result = indexContent.replace(`{{${compName}}}`, compData)
+            
+            // await fsProm.writeFile(path.join(__dirname, 'project-dist', 'index.html'), result)
+            try {
+                let indexContent = await fsProm.readFile(path.join(__dirname, 'project-dist', 'index.html'), 'utf-8')    
+                let result = indexContent.replace(`{{${compName}}}`, compData)
+                await fsProm.writeFile(path.join(__dirname, 'project-dist', 'index.html'), result, 'utf8');
+
+            } catch (err) {
+                throw err
+            }
+        }
     }
 }
 
