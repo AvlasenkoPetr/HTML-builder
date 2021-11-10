@@ -19,9 +19,8 @@ fs.readdir(pathFolder, {withFileTypes: true}, function(err, files) {
                 fs.stat(pathFile, function(error, items) {
                     if (error) throw error('Ошибка!')
 
-                    let arrSize = items.size.toString().split('')
-                    arrSize.splice(-3, 0, '.')
-                    info.push(arrSize.join('') + 'kb')
+                    let arrSize = items.size * ( 10**(-3) )
+                    info.push(arrSize + 'kb')
                     console.log(info.join(' - '))
                 })
 
@@ -29,5 +28,3 @@ fs.readdir(pathFolder, {withFileTypes: true}, function(err, files) {
         }
     }
 })
-
-// Только на 6 работе окончательно разобрался с асинхронностьюовсем, но не было времени переделать 3-5 работы, сделаю в среду вечером, буду очень благодарен если перепроверите их потом
